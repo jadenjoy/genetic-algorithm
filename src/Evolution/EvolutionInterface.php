@@ -5,11 +5,11 @@
  * Date: 19.03.2020
  * Time: 03:58
  */
-namespace Axiom\GeneticAlgorithm\Evolution;
+namespace Darvin\GeneticAlgorithm\Evolution;
 
 /**
  * Interface EvolutionInterafce
- * @package Axiom\GeneticAlgorithm\Evolution
+ * @package Darvin\GeneticAlgorithm\Evolution
  */
 interface EvolutionInterface
 {

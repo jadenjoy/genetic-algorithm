@@ -5,9 +5,9 @@
  * Date: 19.03.2020
  * Time: 04:57
  */
-namespace Axiom\GeneticAlgorithm;
+namespace Darvin\GeneticAlgorithm;
 
-use Axiom\GeneticAlgorithm\AlgorithmDelegate\AlgorithmDelegate;
+use Darvin\GeneticAlgorithm\AlgorithmDelegate\AlgorithmDelegate;
 
 class ExampleDelegate extends AlgorithmDelegate {
 

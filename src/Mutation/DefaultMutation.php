@@ -5,8 +5,8 @@
  * Date: 19.03.2020
  * Time: 02:26
  */
-namespace Axiom\GeneticAlgorithm\Mutation;
-use Axiom\GeneticAlgorithm\Individual\IndividualInterface;
+namespace Darvin\GeneticAlgorithm\Mutation;
+use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
 
 class DefaultMutation extends Mutation {
 

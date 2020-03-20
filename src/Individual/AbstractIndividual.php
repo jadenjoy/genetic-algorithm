@@ -5,8 +5,8 @@
  * Date: 19.03.2020
  * Time: 01:56
  */
-namespace Axiom\GeneticAlgorithm\Individual;
-use Axiom\GeneticAlgorithm\Fitness\FitnessInterface;
+namespace Darvin\GeneticAlgorithm\Individual;
+use Darvin\GeneticAlgorithm\Fitness\FitnessInterface;
 
 abstract class AbstractIndividual implements IndividualInterface {
 

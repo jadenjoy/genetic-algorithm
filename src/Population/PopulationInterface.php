@@ -5,8 +5,8 @@
  * Date: 19.03.2020
  * Time: 03:27
  */
-namespace Axiom\GeneticAlgorithm\Population;
-use Axiom\GeneticAlgorithm\Individual\IndividualInterface;
+namespace Darvin\GeneticAlgorithm\Population;
+use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
 
 interface PopulationInterface {
     public function saveIndividual($index, IndividualInterface $indiv);

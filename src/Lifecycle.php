@@ -1,15 +1,15 @@
 <?php
 /**
- * Axiom Genetic Algorithm - A PHP Library inspired by Charles Darwin's theory of natural evolution
+ * Darvin Genetic Algorithm - A PHP Library inspired by Charles Darwin's theory of natural evolution
  *
- * @package  Axiom Genetic Algorithm
+ * @package  Darvin Genetic Algorithm
  * @author   Tundaikin Konstantin <edeminteractive@gmail.com>
  */
 
-namespace Axiom\GeneticAlgorithm;
+namespace Darvin\GeneticAlgorithm;
 
-use Axiom\GeneticAlgorithm\Evolution\Evolution;
-use Axiom\GeneticAlgorithm\Population\Population;
+use Darvin\GeneticAlgorithm\Evolution\Evolution;
+use Darvin\GeneticAlgorithm\Population\Population;
 
 class Lifecycle
 {

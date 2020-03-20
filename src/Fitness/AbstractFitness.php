@@ -5,8 +5,8 @@
  * Date: 19.03.2020
  * Time: 02:08
  */
-namespace Axiom\GeneticAlgorithm\Fitness;
-use Axiom\GeneticAlgorithm\Settings\SettingsInterface;
+namespace Darvin\GeneticAlgorithm\Fitness;
+use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
 
 abstract class AbstractFitness implements FitnessInterface {
 

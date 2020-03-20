@@ -5,8 +5,9 @@
  * Date: 19.03.2020
  * Time: 02:10
  */
-namespace Axiom\GeneticAlgorithm\Fitness;
-use Axiom\GeneticAlgorithm\Individual\IndividualInterface;
+namespace Darvin\GeneticAlgorithm\Fitness;
+
+use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
 
 class DefaultFitness extends AbstractFitness {
 

@@ -1,5 +1,5 @@
 {
-    "name": "axiom/genetic-algorithm",
+    "name": "darvin/genetic-algorithm",
     "description": "A PHP Library inspired by Charles Darwin's theory",
     "type": "library",
     "license": "MIT",

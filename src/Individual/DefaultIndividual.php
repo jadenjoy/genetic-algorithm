@@ -5,7 +5,7 @@
  * Date: 19.03.2020
  * Time: 01:59
  */
-namespace Axiom\GeneticAlgorithm\Individual;
+namespace Darvin\GeneticAlgorithm\Individual;
 
 class DefaultIndividual extends AbstractIndividual {
 

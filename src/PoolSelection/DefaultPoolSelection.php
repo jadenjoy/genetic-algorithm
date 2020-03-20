@@ -5,9 +5,9 @@
  * Date: 19.03.2020
  * Time: 02:32
  */
-namespace Axiom\GeneticAlgorithm\PoolSelection;
-use Axiom\GeneticAlgorithm\Population\PopulationInterface;
-use Axiom\GeneticAlgorithm\Population\Population;
+namespace Darvin\GeneticAlgorithm\PoolSelection;
+use Darvin\GeneticAlgorithm\Population\PopulationInterface;
+use Darvin\GeneticAlgorithm\Population\Population;
 
 class DefaultPoolSelection implements PoolSelectionInterface {
 

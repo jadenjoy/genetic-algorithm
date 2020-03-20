@@ -5,18 +5,18 @@
  * Date: 19.03.2020
  * Time: 03:51
  */
-namespace Axiom\GeneticAlgorithm\Evolution;
+namespace Darvin\GeneticAlgorithm\Evolution;
 
-use Axiom\GeneticAlgorithm\Crossover\CrossoverInterface;
-use Axiom\GeneticAlgorithm\Mutation\MutationInterface;
-use Axiom\GeneticAlgorithm\PoolSelection\PoolSelectionInterface;
-use Axiom\GeneticAlgorithm\Settings\SettingsInterface;
-use Axiom\GeneticAlgorithm\Population\PopulationInterface;
-use Axiom\GeneticAlgorithm\Population\Population;
+use Darvin\GeneticAlgorithm\Crossover\CrossoverInterface;
+use Darvin\GeneticAlgorithm\Mutation\MutationInterface;
+use Darvin\GeneticAlgorithm\PoolSelection\PoolSelectionInterface;
+use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
+use Darvin\GeneticAlgorithm\Population\PopulationInterface;
+use Darvin\GeneticAlgorithm\Population\Population;
 
 /**
  * Class Evolution
- * @package Axiom\GeneticAlgorithm\Evolution
+ * @package Darvin\GeneticAlgorithm\Evolution
  */
 class Evolution implements EvolutionInterface
 {

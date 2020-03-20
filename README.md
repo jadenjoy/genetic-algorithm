@@ -19,7 +19,7 @@ php data types **Float, String, Booleans, Array, Object**.
 You can install the package via composer:
 
 ```bash
-composer require axiom/genetic-algorithm
+composer require darvin/genetic-algorithm
 ```
 
 

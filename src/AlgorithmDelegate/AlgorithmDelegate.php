@@ -1,7 +1,7 @@
 <?php
 
-namespace Axiom\GeneticAlgorithm\AlgorithmDelegate;
-use Axiom\GeneticAlgorithm\Algorithm;
+namespace Darvin\GeneticAlgorithm\AlgorithmDelegate;
+use Darvin\GeneticAlgorithm\Algorithm;
 
 
 class AlgorithmDelegate implements AlgorithmDelegateInterface

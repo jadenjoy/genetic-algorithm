@@ -6,9 +6,9 @@
  * Time: 02:22
  */
 
-namespace Axiom\GeneticAlgorithm\Mutation;
-use Axiom\GeneticAlgorithm\Settings\SettingsInterface;
-use Axiom\GeneticAlgorithm\Individual\IndividualInterface;
+namespace Darvin\GeneticAlgorithm\Mutation;
+use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
+use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
 
 abstract class Mutation implements MutationInterface {
     /* @var $settings SettingsClass */

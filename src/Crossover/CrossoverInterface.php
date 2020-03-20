@@ -5,9 +5,9 @@
  * Date: 19.03.2020
  * Time: 01:20
  */
-namespace Axiom\GeneticAlgorithm\Crossover;
-use Axiom\GeneticAlgorithm\Individual\IndividualInterface;
-use Axiom\GeneticAlgorithm\Settings\SettingsInterface;
+namespace Darvin\GeneticAlgorithm\Crossover;
+use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
+use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
 
 interface CrossoverInterface {
     public function crossoverIndividuals(IndividualInterface $individual1, IndividualInterface $individual2);

@@ -5,9 +5,9 @@
  * Date: 19.03.2020
  * Time: 03:28
  */
-namespace Axiom\GeneticAlgorithm\Population;
-use Axiom\GeneticAlgorithm\Individual\IndividualInterface;
-use Axiom\GeneticAlgorithm\Settings\SettingsInterface;
+namespace Darvin\GeneticAlgorithm\Population;
+use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
+use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
 
 class Population implements PopulationInterface {
 

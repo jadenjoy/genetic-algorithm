@@ -1,24 +1,24 @@
 <?php
 /**
- * Axiom Genetic Algorithm - A PHP Library inspired by Charles Darwin's theory
+ * Darvin Genetic Algorithm - A PHP Library inspired by Charles Darwin's theory
  *
- * @package Axiom_Genetic_Algorithm
+ * @package Darvin_Genetic_Algorithm
  * @author  Tundaikin Konstantin <edeminteractive@gmail.com>
  */
 
-namespace Axiom\GeneticAlgorithm;
+namespace Darvin\GeneticAlgorithm;
 
 
-use Axiom\GeneticAlgorithm\AlgorithmDelegate\AlgorithmDelegate;
-use Axiom\GeneticAlgorithm\AlgorithmDelegate\AlgorithmDelegateInterface;
-use Axiom\GeneticAlgorithm\Crossover\CrossoverInterface;
-use Axiom\GeneticAlgorithm\Evolution\EvolutionInterface;
-use Axiom\GeneticAlgorithm\Fitness\FitnessInterface;
-use Axiom\GeneticAlgorithm\Individual\IndividualInterface;
-use Axiom\GeneticAlgorithm\Mutation\MutationInterface;
-use Axiom\GeneticAlgorithm\PoolSelection\PoolSelectionInterface;
-use Axiom\GeneticAlgorithm\Population\PopulationInterface;
-use Axiom\GeneticAlgorithm\Settings\SettingsInterface;
+use Darvin\GeneticAlgorithm\AlgorithmDelegate\AlgorithmDelegate;
+use Darvin\GeneticAlgorithm\AlgorithmDelegate\AlgorithmDelegateInterface;
+use Darvin\GeneticAlgorithm\Crossover\CrossoverInterface;
+use Darvin\GeneticAlgorithm\Evolution\EvolutionInterface;
+use Darvin\GeneticAlgorithm\Fitness\FitnessInterface;
+use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
+use Darvin\GeneticAlgorithm\Mutation\MutationInterface;
+use Darvin\GeneticAlgorithm\PoolSelection\PoolSelectionInterface;
+use Darvin\GeneticAlgorithm\Population\PopulationInterface;
+use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
 
 class Algorithm
 {

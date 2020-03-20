@@ -6,8 +6,8 @@
  * Time: 01:07
  */
 
-namespace Axiom\GeneticAlgorithm\Individual;
-use Axiom\GeneticAlgorithm\Fitness\FitnessInterface;
+namespace Darvin\GeneticAlgorithm\Individual;
+use Darvin\GeneticAlgorithm\Fitness\FitnessInterface;
 
 interface IndividualInterface {
     public function generateIndividual($genomeSize);

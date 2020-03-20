@@ -1,7 +1,7 @@
 <?php
 
-namespace Axiom\GeneticAlgorithm\Crossover;
-use Axiom\GeneticAlgorithm\Individual\IndividualInterface;
+namespace Darvin\GeneticAlgorithm\Crossover;
+use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
 
 class DefaultCrossover extends AbstractCrossover {
 
