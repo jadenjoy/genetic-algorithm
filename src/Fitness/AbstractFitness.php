@@ -10,7 +10,6 @@ use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
 
 abstract class AbstractFitness implements FitnessInterface
 {
-
     public $settings;
 
     public function setSettings(SettingsInterface $settings)

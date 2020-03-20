@@ -4,7 +4,8 @@
 </h1>
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/darvin/genetic-algorithm.svg?style=flat-square)](https://packagist.org/packages/darvin/genetic-algorithm)
-
+[![Quality Score](https://www.code-inspector.com/project/5217/score/svg)](https://frontend.code-inspector.com/public/project/5217/genetic-algorithm/dashboard)
+[![Code Grade](https://www.code-inspector.com/project/5217/status/svg)](https://frontend.code-inspector.com/public/project/5217/genetic-algorithm/dashboard)
 This package allows you to use **Genetic Algorithms** in your **projects**.
 It will help high-quality solutions to optimization and search problems by relying on biologically 
 inspired operators such as mutation, crossover and selection.
