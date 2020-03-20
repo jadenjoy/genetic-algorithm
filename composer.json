@@ -1,0 +1,23 @@
+{
+    "name": "axiom/genetic-algorithm",
+    "description": "A PHP Library inspired by Charles Darwin's theory",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tundaikin Konstantin",
+            "email": "edeminteractive@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "autoload": {
+            "psr-4": {"Axiom\\GeneticAlgorithm\\": "src/"}
+        },
+        "classmap": [
+            "src"
+        ]
+
+    }
+}
