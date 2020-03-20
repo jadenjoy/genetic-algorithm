@@ -7,6 +7,7 @@
  */
 namespace Darvin\GeneticAlgorithm\Settings;
 
-interface SettingsInterface {
+interface SettingsInterface
+{
 
 }

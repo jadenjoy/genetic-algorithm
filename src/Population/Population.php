@@ -9,7 +9,8 @@ namespace Darvin\GeneticAlgorithm\Population;
 use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
 use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
 
-class Population implements PopulationInterface {
+class Population implements PopulationInterface
+{
 
     //class properties
     /** @var GAIndividualInterface[] */
@@ -19,7 +20,6 @@ class Population implements PopulationInterface {
     /* @var $settings SettingsInterface */
     public $settings;
 
-
     function __construct(IndividualInterface $individual, SettingsInterface $settings, $populationSize, $initialise = false)
     {
         $this->individual = $individual;
@@ -28,12 +28,11 @@ class Population implements PopulationInterface {
             die("Размер популяции должен быть больше > 0");
         }
 
-        for ($i=0;$i<$populationSize; $i++) {
+        for ($i=0; $i<$populationSize; $i++) {
             $this->colony[$i] = clone $this->individual;  //instantiate a new object
         }
         // Initialise population
-        if ($initialise)
-        {
+        if ($initialise) {
             // Loop and create individuals
             for ($i = 0; $i < count($this->colony); $i++) {
                 /* @var $new_individual IndividualInterface */
@@ -48,20 +47,22 @@ class Population implements PopulationInterface {
 
 
     // Сохранение особи
-    public function saveIndividual($index, IndividualInterface $indiv) {
+    public function saveIndividual($index, IndividualInterface $indiv)
+    {
         $this->colony[$index] = $indiv;
     }
 
 
     // Выбор самого успешного
-    public function getFittest() {
+    public function getFittest()
+    {
         /* @var $fittest IndividualInterface */
         $fittest = $this->colony[0];  //create a starting point for fitness person0
 
 
         // Loop through individuals to find fittest
         for ($i = 0; $i < $this->size(); $i++) {
-            if ($fittest->getFitness() >= $this->colony[$i]->getFitness() ) {
+            if ($fittest->getFitness() >= $this->colony[$i]->getFitness()) {
                 $fittest = $this->colony[$i];
             }
 
@@ -72,23 +73,23 @@ class Population implements PopulationInterface {
 
     /* Публичные методы */
     // Получить особь
-    public function getIndividual($index) {
+    public function getIndividual($index)
+    {
         return  $this->colony[$index];
     }
     // Размер популяции
-    public function size() {
+    public function size()
+    {
         return count($this->colony);
     }
 
-    public function getOriginIndividual() {
+    public function getOriginIndividual()
+    {
         return $this->individual;
     }
 
-    public function getSettings() {
+    public function getSettings()
+    {
         return $this->settings;
     }
-
-
-
-
 }

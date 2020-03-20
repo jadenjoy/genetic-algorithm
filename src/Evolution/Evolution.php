@@ -88,7 +88,5 @@ class Evolution implements EvolutionInterface
         }
 
         return $newPopulation;
-
-
     }
 }

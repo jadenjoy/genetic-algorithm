@@ -9,7 +9,8 @@ namespace Darvin\GeneticAlgorithm\Crossover;
 use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
 use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
 
-interface CrossoverInterface {
+interface CrossoverInterface
+{
     public function crossoverIndividuals(IndividualInterface $individual1, IndividualInterface $individual2);
     public function setSettings(SettingsInterface $settings);
     public function setOriginalIndividual(IndividualInterface $individual);

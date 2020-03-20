@@ -7,7 +7,8 @@
  */
 namespace Darvin\GeneticAlgorithm\Settings;
 
-class DefaultSettings extends AbstractSettings  {
+class DefaultSettings extends AbstractSettings
+{
     /**
      *
     $this->uniformRate = 0.5;
@@ -34,7 +35,5 @@ class DefaultSettings extends AbstractSettings  {
 
         // Особей
         $this->genomeSize = 10;
-
     }
-
 }

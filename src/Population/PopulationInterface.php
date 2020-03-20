@@ -8,7 +8,8 @@
 namespace Darvin\GeneticAlgorithm\Population;
 use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
 
-interface PopulationInterface {
+interface PopulationInterface
+{
     public function saveIndividual($index, IndividualInterface $indiv);
     public function getFittest();
     public function getSettings();

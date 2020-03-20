@@ -9,7 +9,8 @@ namespace Darvin\GeneticAlgorithm\Mutation;
 use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
 use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
 
-interface MutationInterface {
+interface MutationInterface
+{
     public function mutate(IndividualInterface $individual);
     public function setSettings(SettingsInterface $settings);
     public function setOriginalIndividual(IndividualInterface $individual);

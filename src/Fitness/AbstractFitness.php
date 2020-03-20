@@ -8,11 +8,12 @@
 namespace Darvin\GeneticAlgorithm\Fitness;
 use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
 
-abstract class AbstractFitness implements FitnessInterface {
+abstract class AbstractFitness implements FitnessInterface
+{
 
     public $settings;
 
-    function setSettings(SettingsInterface $settings)
+    public function setSettings(SettingsInterface $settings)
     {
         $this->settings = $settings;
     }

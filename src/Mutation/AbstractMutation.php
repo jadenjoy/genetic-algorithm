@@ -10,18 +10,20 @@ namespace Darvin\GeneticAlgorithm\Mutation;
 use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
 use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
 
-abstract class Mutation implements MutationInterface {
+abstract class Mutation implements MutationInterface
+{
     /* @var $settings SettingsClass */
     public $settings;
     /* @var $individual IndividualInterface */
     public $individual;
 
-    public function setSettings(SettingsInterface $settings) {
+    public function setSettings(SettingsInterface $settings)
+    {
         $this->settings = $settings;
     }
 
-    public function setOriginalIndividual(IndividualInterface $individual) {
+    public function setOriginalIndividual(IndividualInterface $individual)
+    {
         $this->individual = $individual;
     }
-
 }

@@ -166,7 +166,6 @@ class Algorithm
          * Init Delegates
          */
         $this->setupAlgorithmDelegate();
-
     }
 
     /**
@@ -224,7 +223,7 @@ class Algorithm
     }
 
     /**
-     * @return SettingsClass
+     * @return SettingsInterface
      */
     public function getSettings(): SettingsInterface
     {
@@ -235,7 +234,7 @@ class Algorithm
      * @param SettingsInterface $settings
      */
 
-    function setSettings(SettingsInterface $settings)
+    public function setSettings(SettingsInterface $settings)
     {
         $this->settings = $settings;
     }
@@ -249,7 +248,7 @@ class Algorithm
     }
 
     /**
-     /** @param FitnessInterface $fitness
+     * @param FitnessInterface $fitness
      */
     public function setFitness(FitnessInterface $fitness)
     {
@@ -345,7 +344,7 @@ class Algorithm
     }
 
     /**
-     * @return EvolutionInterafce
+     * @return EvolutionInterface
      */
     public function getEvolution(): EvolutionInterface
     {
@@ -353,7 +352,7 @@ class Algorithm
     }
 
     /**
-     * @param EvolutionInterafce $evolution
+     * @param EvolutionInterface $evolution
      */
     public function setEvolution(EvolutionInterface $evolution)
     {
@@ -458,6 +457,4 @@ class Algorithm
     {
         $this->generation_stagnant++;
     }
-
-
 }

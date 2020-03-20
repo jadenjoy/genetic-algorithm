@@ -9,7 +9,8 @@ namespace Darvin\GeneticAlgorithm\PoolSelection;
 use Darvin\GeneticAlgorithm\Population\PopulationInterface;
 use Darvin\GeneticAlgorithm\Population\Population;
 
-class DefaultPoolSelection implements PoolSelectionInterface {
+class DefaultPoolSelection implements PoolSelectionInterface
+{
 
     public function poolSelection(PopulationInterface $pop)
     {
@@ -20,7 +21,7 @@ class DefaultPoolSelection implements PoolSelectionInterface {
 
 
         for ($i=0; $i < $settings->poolSize; $i++) {
-            $randomId = rand(0, $pop->size()-1 ); //Get a random individual from anywhere in the population
+            $randomId = rand(0, $pop->size()-1); //Get a random individual from anywhere in the population
             $pool->saveIndividual($i, $pop->getIndividual($randomId));
 
         }

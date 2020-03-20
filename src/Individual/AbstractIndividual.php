@@ -8,7 +8,8 @@
 namespace Darvin\GeneticAlgorithm\Individual;
 use Darvin\GeneticAlgorithm\Fitness\FitnessInterface;
 
-abstract class AbstractIndividual implements IndividualInterface {
+abstract class AbstractIndividual implements IndividualInterface
+{
 
     /* @var $fitnessDelegate FitnessInterface */
     public $fitnessDelegate;
@@ -32,33 +33,37 @@ abstract class AbstractIndividual implements IndividualInterface {
     }
 
 
-    public function getGene($index) {
+    public function getGene($index)
+    {
         return $this->genes[$index];
     }
 
-    public function setGene($index,$value) {
+
+    public function setGene($index, $value)
+    {
         $this->genes[$index] = $value;
         $this->fitness = 0;
     }
 
     /* Public methods */
-    public function genomeSize() {
+    public function genomeSize()
+    {
         return count($this->genes);
     }
 
-    public function getGenome() {
+    public function getGenome()
+    {
         return $this->genes;
     }
 
-    public function setGenome($genome) {
+    public function setGenome($genome)
+    {
         $this->genes = $genome;
     }
 
-    public function getFitness() {
+    public function getFitness()
+    {
         $this->fitness = $this->fitnessDelegate->getFitness($this);
         return $this->fitness;
-
     }
-
-
 }

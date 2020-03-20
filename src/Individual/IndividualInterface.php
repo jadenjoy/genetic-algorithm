@@ -9,11 +9,12 @@
 namespace Darvin\GeneticAlgorithm\Individual;
 use Darvin\GeneticAlgorithm\Fitness\FitnessInterface;
 
-interface IndividualInterface {
+interface IndividualInterface
+{
     public function generateIndividual($genomeSize);
     public function setFitnessDelegate(FitnessInterface $delegate);
     public function getGene($index);
-    public function setGene($index,$value);
+    public function setGene($index, $value);
     public function genomeSize();
     public function randomGene();
     public function getGenome();

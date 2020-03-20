@@ -9,7 +9,8 @@ namespace Darvin\GeneticAlgorithm;
 
 use Darvin\GeneticAlgorithm\AlgorithmDelegate\AlgorithmDelegate;
 
-class ExampleDelegate extends AlgorithmDelegate {
+class ExampleDelegate extends AlgorithmDelegate
+{
 
     public $starttime = 0;
 

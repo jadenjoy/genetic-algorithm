@@ -13,5 +13,5 @@ namespace Darvin\GeneticAlgorithm\Evolution;
  */
 interface EvolutionInterface
 {
-
+//
 }

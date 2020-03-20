@@ -7,7 +7,8 @@
  */
 namespace Darvin\GeneticAlgorithm\Individual;
 
-class DefaultIndividual extends AbstractIndividual {
+class DefaultIndividual extends AbstractIndividual
+{
 
 
     //public $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-+,. ';
@@ -17,10 +18,9 @@ class DefaultIndividual extends AbstractIndividual {
     public function generateIndividual($genomeSize)
     {
         //now lets randomly load the genes (array of ascii characters) to the size of the array
-        for ($i=0; $i < $genomeSize; $i++ ){
+        for ($i=0; $i < $genomeSize; $i++) {
             $this->genes[$i] = $this->characters[rand(0, strlen($this->characters) - 1)];
         }
-
     }
 
     public function randomGene()

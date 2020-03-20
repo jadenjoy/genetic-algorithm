@@ -8,6 +8,7 @@
 namespace Darvin\GeneticAlgorithm\PoolSelection;
 use Darvin\GeneticAlgorithm\Population\PopulationInterface;
 
-interface PoolSelectionInterface {
+interface PoolSelectionInterface
+{
     public function poolSelection(PopulationInterface $pop);
 }

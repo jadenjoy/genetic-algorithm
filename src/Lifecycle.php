@@ -63,7 +63,6 @@ class Lifecycle
         $this->algorithm->setEvolution(new Evolution($alg->getCrossover(), $alg->getMutation(), $alg->getPool()));
 
         while ($alg->getPopulation()->getFittest()->getFitness() > $alg->getFitness()->getMaxFitness()) {
-
             $status = $delegate->algorithmStatus();
             if ($status == Algorithm::ALGORITHM_STATUS_STOP) {
                 return false;
