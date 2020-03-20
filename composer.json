@@ -13,7 +13,7 @@
     "require": {},
     "autoload": {
         "autoload": {
-            "psr-4": {"Axiom\\GeneticAlgorithm\\": "src/"}
+            "psr-4": {"Darvin\\GeneticAlgorithm\\": "src/"}
         },
         "classmap": [
             "src"

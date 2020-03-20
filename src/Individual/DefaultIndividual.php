@@ -16,8 +16,8 @@ class DefaultIndividual extends AbstractIndividual {
 
     public function generateIndividual($genomeSize)
     {
-        //now lets randomly load the genes (array of ascii characters)	 to the size of the array
-        for ($i=0; $i < $genomeSize; $i++ ) {
+        //now lets randomly load the genes (array of ascii characters) to the size of the array
+        for ($i=0; $i < $genomeSize; $i++ ){
             $this->genes[$i] = $this->characters[rand(0, strlen($this->characters) - 1)];
         }
 
