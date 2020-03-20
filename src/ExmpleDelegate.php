@@ -23,16 +23,14 @@ class ExampleDelegate extends AlgorithmDelegate {
         $execution_time = (microtime(true) - $this->starttime);
         echo "Время поиска:".$execution_time."\n";
         $fittest = $algorithm->getPopulation()->getFittest();
-        echo "Закончено. Найдено решение: ".implode("",$fittest->getGenome())."\n";
-
+        echo "Закончено. Найдено решение: ".implode("", $fittest->getGenome())."\n";
     }
 
     public function newSolutionFound(Algorithm $algorithm)
     {
         $fittest = $algorithm->getPopulation()->getFittest();
         $genome = $fittest->getGenome();
-        echo "Найдено новое решение: ".implode("",$genome)."\n";
-
+        echo "Найдено новое решение: ".implode("", $genome)."\n";
     }
 
     public function maxGenerationStagnantReached(Algorithm $algorithm)

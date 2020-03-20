@@ -3,7 +3,7 @@
     Genetic Algorithm
 </h1>
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mtolhuys/laravel-schematics.svg?style=flat-square)](https://packagist.org/packages/mtolhuys/laravel-schematics)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/darvin/genetic-algorithm.svg?style=flat-square)](https://packagist.org/packages/darvin/genetic-algorithm)
 
 This package allows you to use **Genetic Algorithms** in your **projects**.
 It will help high-quality solutions to optimization and search problems by relying on biologically 
