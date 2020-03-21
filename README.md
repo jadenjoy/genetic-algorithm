@@ -27,9 +27,58 @@ composer require darvin/genetic-algorithm
 
 
 ---
-
 ## Usage
 
+#### Settings
+Algorithm needs settings to work, so lets starts with the default:
+
+```php
+$config = new \Darvin\GeneticAlgorithm\Settings\DefaultSettings();
+$algorithm = new Algorithm($config);
+```
+#### Individual Generation
+An individual is characterized by a set of parameters (variables) known as Genes.
+Lets say that we encode the genes in a chromosome.
+
+```php
+$algorithm->setPart("individual:gene", function (Gene $gene) {
+    $characters = str_split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-+,. ');
+    $gene->value($characters[rand(0, count($characters)-1)]);
+});
+```
+
+#### Fitness Function
+The fitness function determines how fit an individual is (the ability of an individual
+to compete with other individuals). It gives a fitness score to each individual. The
+probability that an individual will be selected for reproduction is based on its fitness score.
+
+```php
+$algorithm->setPart("fitness", function (Individual $individual) use ($solution) {
+    $fitness = 0;
+    for ($i=0; $i < $individual->genomeSize() && $i < count($solution); $i++) {
+        $char_diff=abs(ord($individual->getGene($i)->value) - ord($solution[$i]));
+        $fitness+=$char_diff;
+    }
+    return $fitness;
+});
+```
+
+#### Events
+You can setup Events to listen and control Algorithm.
+
+##### Algorithm Start
+```php
+$algorithm->setPart("event:listen:algorithmStart", function (Algorithm $algorithm) {
+    echo "Algorithm start.\n";
+});
+```
+
+##### New Solution
+```php
+$algorithm->setPart("event:listen:newSolutionFound", function (Algorithm $algorithm) {
+    echo "New solution found!";
+});
+```
 
 
 ## Contributing
