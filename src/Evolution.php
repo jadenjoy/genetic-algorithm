@@ -1,18 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: konstantin
- * Date: 19.03.2020
- * Time: 03:51
- */
-namespace Darvin\GeneticAlgorithm\Evolution;
 
-use Darvin\GeneticAlgorithm\Crossover\CrossoverInterface;
-use Darvin\GeneticAlgorithm\Mutation\MutationInterface;
-use Darvin\GeneticAlgorithm\PoolSelection\PoolSelectionInterface;
-use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
-use Darvin\GeneticAlgorithm\Population\PopulationInterface;
-use Darvin\GeneticAlgorithm\Population\Population;
+namespace Darvin\GeneticAlgorithm;
+
+use Darvin\GeneticAlgorithm\Contracts\CrossoverInterface;
+use Darvin\GeneticAlgorithm\Contracts\MutationInterface;
+use Darvin\GeneticAlgorithm\Contracts\PoolSelectionInterface;
+use Darvin\GeneticAlgorithm\Contracts\SettingsInterface;
+use Darvin\GeneticAlgorithm\Contracts\PopulationInterface;
+use Darvin\GeneticAlgorithm\Contracts\EvolutionInterface;
 
 /**
  * Class Evolution
@@ -72,8 +67,8 @@ class Evolution implements EvolutionInterface
         /* Скрещивание */
 
         for ($i = $elitismOffset; $i < $pop->size(); $i++) {
-            $indiv1 = $this->pool->poolSelection($pop);
-            $indiv2 = $this->pool->poolSelection($pop);
+            $indiv1 = $this->pool->poolSelect($pop);
+            $indiv2 = $this->pool->poolSelect($pop);
 
             $newIndiv = $this->crossover->crossoverIndividuals($indiv1, $indiv2);
 

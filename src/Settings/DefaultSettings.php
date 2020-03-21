@@ -30,7 +30,7 @@ class DefaultSettings extends AbstractSettings
         $this->mutationRate = 0.02; // 0.01 - 0.02
         $this->poolSize = 5;
         $this->initial_population_size = 10;
-        $this->max_generation_stagnant = 400;
+        $this->max_generation_stagnant = 4000;
         $this->elitism = true;
 
         // Особей

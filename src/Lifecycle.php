@@ -8,21 +8,37 @@
 
 namespace Darvin\GeneticAlgorithm;
 
-use Darvin\GeneticAlgorithm\Evolution\Evolution;
-use Darvin\GeneticAlgorithm\Population\Population;
-
-class Lifecycle
+/**
+ * Class Lifecycle
+ * @package Darvin\GeneticAlgorithm
+ */
+class Lifecycle extends AlgorithmPart
 {
-
-    /* @var $algorithm Algorithm */
-    private $algorithm;
-
-
-    public function __construct(Algorithm $algorithm)
-    {
-        $this->setAlgorithm($algorithm);
-    }
-
+    /*
+    |--------------------------------------------------------------------------
+    | Lifecycle parameters
+    |--------------------------------------------------------------------------
+    |
+    */
+    /**
+     * Сколько прошло поколений
+     *
+     * @var int
+     */
+    public $generationCount = 0;
+    /**
+     * Maximum
+     * @var int
+     */
+    public $generation_stagnant = 0;
+    /**
+     * @var int
+     */
+    public $most_fit = 0;
+    /**
+     * @var int
+     */
+    public $most_fit_last = 40000;
 
     /*
     |--------------------------------------------------------------------------
@@ -39,15 +55,15 @@ class Lifecycle
         /*
          * Call delegate
          */
-        $delegate = $this->algorithm->getDelegate();
-        $delegate->algorithmStart($this->algorithm);
+        $events = $this->algorithm->getEvents();
+        $events->trigger("algorithmStart", $this->algorithm);
 
         $alg = $this->algorithm;
         $settings = $alg->getSettings();
         /*
          * Check status before start
          */
-        $status = $delegate->algorithmStatus();
+        $status = $this->algorithm->algorithmStatus();
 
         /*
          * Startup status?
@@ -63,7 +79,7 @@ class Lifecycle
         $this->algorithm->setEvolution(new Evolution($alg->getCrossover(), $alg->getMutation(), $alg->getPool()));
 
         while ($alg->getPopulation()->getFittest()->getFitness() > $alg->getFitness()->getMaxFitness()) {
-            $status = $delegate->algorithmStatus();
+            $status = $this->algorithm->algorithmStatus();
             if ($status == Algorithm::ALGORITHM_STATUS_STOP) {
                 return false;
             }
@@ -72,50 +88,126 @@ class Lifecycle
             }
 
             // Первое поколение
-            $alg->increaseGenerationCount();
+            $this->increaseGenerationCount();
             // Сообщеаем делегату
-            $delegate->newGeneration($alg->getGenerationCount());
+            $events->trigger("newGeneration", $this->generationCount);
             // Выбираем самого приспособленного
-            $alg->setMostFit($alg->getPopulation()->getFittest()->getFitness());
+            $this->setMostFit($alg->getPopulation()->getFittest()->getFitness());
             //Создаем новую популяцию
             $alg->setPopulation($alg->getEvolution()->evolvePopulation($alg->getPopulation()));
 
-            if ($alg->getMostFit() < $alg->getMostFitLast()) {
-                $delegate->newSolutionFound($alg);
-                $alg->setMostFitLast($alg->getMostFit());
-                $alg->resetGenerationStagnant();
+            if ($this->most_fit < $this->most_fit_last) {
+                $events->trigger("newSolutionFound", $alg);
+                $this->most_fit_last = $this->most_fit;
+                $this->resetGenerationStagnant();
 
             } else {
-                $alg->increaseGenerationStagnant();
+                $this->increaseGenerationStagnant();
             }
 
-            if ($alg->getGenerationStagnant() > $alg->getSettings()->max_generation_stagnant) {
-                $delegate->maxGenerationStagnantReached($alg);
-                $status = $delegate->algorithmStatus();
+            if ($this->generation_stagnant > $alg->getSettings()->max_generation_stagnant) {
+                $events->trigger("maxGenerationStagnantReached", $alg);
+                $status = $alg->algorithmStatus();
                 if ($status != Algorithm::ALGORITHM_STATUS_CONTINUE) {
                     break;
                 }
             }
         }
+        $events->trigger("finalSolutionFound", $alg);
+    }
 
-        $delegate->finalSolutionFound($alg);
+
+    /**
+     *
+     */
+    public function increaseGenerationCount()
+    {
+        $this->generationCount++;
     }
 
     /**
-     * @return Algorithm
+     * @return int
      */
-    public function getAlgorithm(): Algorithm
+    public function getGenerationCount(): int
     {
-        return $this->algorithm;
+        return $this->generationCount;
     }
 
     /**
-     * @param Algorithm $algorithm
+     * @param int $generationCount
      */
-    public function setAlgorithm(Algorithm $algorithm)
+    public function setGenerationCount(int $generationCount)
     {
-        $this->algorithm = $algorithm;
+        $this->generationCount = $generationCount;
     }
+
+    /**
+     * @return int
+     */
+    public function getGenerationStagnant(): int
+    {
+        return $this->generation_stagnant;
+    }
+
+    /**
+     * @param int $generation_stagnant
+     */
+    public function setGenerationStagnant(int $generation_stagnant)
+    {
+        $this->generation_stagnant = $generation_stagnant;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMostFit(): int
+    {
+        return $this->most_fit;
+    }
+
+    /**
+     * @param int $most_fit
+     */
+    public function setMostFit(int $most_fit)
+    {
+        $this->most_fit = $most_fit;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMostFitLast(): int
+    {
+        return $this->most_fit_last;
+    }
+
+    /**
+     * @param int $most_fit_last
+     */
+    public function setMostFitLast(int $most_fit_last)
+    {
+        $this->most_fit_last = $most_fit_last;
+    }
+
+
+    /**
+     *
+     */
+    public function resetGenerationStagnant()
+    {
+        $this->generation_stagnant = 0;
+    }
+
+    /**
+     *
+     */
+    public function increaseGenerationStagnant()
+    {
+        $this->generation_stagnant++;
+    }
+
+
+
 
 
 }

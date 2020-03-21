@@ -7,6 +7,8 @@
  */
 namespace Darvin\GeneticAlgorithm\Settings;
 
+use Darvin\GeneticAlgorithm\Contracts\SettingsInterface;
+
 abstract class AbstractSettings implements SettingsInterface
 {
     public $uniformRate;

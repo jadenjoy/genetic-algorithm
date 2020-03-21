@@ -8,18 +8,19 @@
 
 namespace Darvin\GeneticAlgorithm;
 
+use Darvin\GeneticAlgorithm\Contracts\SettingsInterface;
+use Darvin\GeneticAlgorithm\Contracts\IndividualInterface;
+use Darvin\GeneticAlgorithm\Contracts\MutationInterface;
+use Darvin\GeneticAlgorithm\Contracts\FitnessInterface;
+use Darvin\GeneticAlgorithm\Contracts\PopulationInterface;
+use Darvin\GeneticAlgorithm\Contracts\CrossoverInterface;
+use Darvin\GeneticAlgorithm\Contracts\PoolSelectionInterface;
+use Darvin\GeneticAlgorithm\Contracts\EvolutionInterface;
 
-use Darvin\GeneticAlgorithm\AlgorithmDelegate\AlgorithmDelegate;
-use Darvin\GeneticAlgorithm\AlgorithmDelegate\AlgorithmDelegateInterface;
-use Darvin\GeneticAlgorithm\Crossover\CrossoverInterface;
-use Darvin\GeneticAlgorithm\Evolution\EvolutionInterface;
-use Darvin\GeneticAlgorithm\Fitness\FitnessInterface;
-use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
-use Darvin\GeneticAlgorithm\Mutation\MutationInterface;
-use Darvin\GeneticAlgorithm\PoolSelection\PoolSelectionInterface;
-use Darvin\GeneticAlgorithm\Population\PopulationInterface;
-use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
-
+/**
+ * Class Algorithm
+ * @package Darvin\GeneticAlgorithm
+ */
 class Algorithm
 {
 
@@ -81,54 +82,29 @@ class Algorithm
     public $pool;
     /* @var $evolution EvolutionInterface */
     public $evolution;
-    /* @var $delegate AlgorithmDelegateInterface */
-    public $delegate;
+    /* @var $delegate AlgorithmEvents */
+    public $events;
+
+    /**
+     * @var PartBuilder
+     */
+    public $builder;
 
     // Делегирование событий
-    /**
-     * Сколько прошло поколений
-     *
-     * @var int
-     */
-    public $generationCount = 0;
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Algorithm parameters
-    |--------------------------------------------------------------------------
-    |
-    */
-    /**
-     * Maximum
-     * @var int
-     */
-    public $generation_stagnant = 0;
-    /**
-     * @var int
-     */
-    public $most_fit = 0;
-    /**
-     * @var int
-     */
-    public $most_fit_last = 40000;
-
     /* @var $settings SettingsInterface */
     private $settings;
 
     /**
+     * @var int
+     */
+    private $status = self::ALGORITHM_STATUS_NO_STATUS;
+
+    /**
      * Algorithm constructor.
      * @param SettingsInterface      $settings
-     * @param IndividualInterface    $individual
-     * @param FitnessInterface $fitness
-     * @param CrossoverInterface $crossover
-     * @param MutationInterface $mutation
-     * @param PoolSelectionInterface $pool
      */
 
-    function __construct(SettingsInterface $settings, IndividualInterface $individual,
-                         FitnessInterface $fitness, CrossoverInterface $crossover,
-                         MutationInterface $mutation, PoolSelectionInterface $pool)
+    public function __construct(SettingsInterface $settings)
     {
         /*
          * Set Algorithm Settings
@@ -139,87 +115,46 @@ class Algorithm
         /*
          * Initialize fitness algorithm
          */
-        $this->initializeFitness($fitness);
+        $this->fitness = new Fitness();
 
         /*
          * Initialize Individual
          */
-        $this->initializeIndividual($individual);
+        $this->individual = new Individual($this->fitness);
 
         /*
          * Initialize Crossover
          */
-        $this->initializeCrossover($crossover);
+        $this->crossover = new Crossover($this);
 
         /*
          * Initialize Mutation
          */
-        $this->initializeMutation($mutation);
+        $this->mutation = new Mutation($this);
 
         /*
          * Initialize PoolSeletion
          */
-        $this->initializePoolSelection($pool);
-
+        $this->pool = new PoolSelection($this);
 
         /*
          * Init Delegates
          */
         $this->setupAlgorithmDelegate();
+
+        /*
+         * Init Part Builder
+         */
+        $this->builder = new PartBuilder($this);
     }
 
-    /**
-     * @param FitnessInterface $fitness
-     */
-    public function initializeFitness(FitnessInterface $fitness)
-    {
-        $fitness->setSettings($this->settings);
-        $this->setFitness($fitness);
-    }
-
-    /**
-     * @param IndividualInterface $individual
-     */
-    public function initializeIndividual(IndividualInterface $individual)
-    {
-        $individual->setFitnessDelegate($this->fitness);
-        $this->setIndividual($individual);
-    }
-
-    /**
-     * @param CrossoverInterface $crossover
-     */
-    public function initializeCrossover(CrossoverInterface $crossover)
-    {
-        $crossover->setOriginalIndividual($this->individual);
-        $crossover->setSettings($this->settings);
-        $this->setCrossover($crossover);
-    }
-
-    /**
-     * @param MutationInterface $mutation
-     */
-    public function initializeMutation(MutationInterface $mutation)
-    {
-        $mutation->setOriginalIndividual($this->individual);
-        $mutation->setSettings($this->settings);
-        $this->setMutation($mutation);
-    }
-
-    /**
-     * @param PoolSelectionInterface $poolSelection
-     */
-    public function initializePoolSelection(PoolSelectionInterface $poolSelection)
-    {
-        $this->setPool($poolSelection);
-    }
 
     /**
      *
      */
     public function setupAlgorithmDelegate()
     {
-        $this->delegate = new AlgorithmDelegate();
+        $this->events = new AlgorithmEvents();
     }
 
     /**
@@ -322,9 +257,9 @@ class Algorithm
     /**
      * @return mixed
      */
-    public function getDelegate(): AlgorithmDelegateInterface
+    public function getEvents(): AlgorithmEvents
     {
-        return $this->delegate;
+        return $this->events;
     }
 
     /**
@@ -368,93 +303,18 @@ class Algorithm
         $lifecycle->startLifecycle();
     }
 
-
     /**
-     *
+     * @param $part
+     * @param $closure
      */
-    public function increaseGenerationCount()
-    {
-        $this->generationCount++;
+    public function setPart($part, $closure) {
+        $this->builder->setPart($part, $closure);
     }
 
     /**
      * @return int
      */
-    public function getGenerationCount(): int
-    {
-        return $this->generationCount;
-    }
-
-    /**
-     * @param int $generationCount
-     */
-    public function setGenerationCount(int $generationCount)
-    {
-        $this->generationCount = $generationCount;
-    }
-
-    /**
-     * @return int
-     */
-    public function getGenerationStagnant(): int
-    {
-        return $this->generation_stagnant;
-    }
-
-    /**
-     * @param int $generation_stagnant
-     */
-    public function setGenerationStagnant(int $generation_stagnant)
-    {
-        $this->generation_stagnant = $generation_stagnant;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMostFit(): int
-    {
-        return $this->most_fit;
-    }
-
-    /**
-     * @param int $most_fit
-     */
-    public function setMostFit(int $most_fit)
-    {
-        $this->most_fit = $most_fit;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMostFitLast(): int
-    {
-        return $this->most_fit_last;
-    }
-
-    /**
-     * @param int $most_fit_last
-     */
-    public function setMostFitLast(int $most_fit_last)
-    {
-        $this->most_fit_last = $most_fit_last;
-    }
-
-
-    /**
-     *
-     */
-    public function resetGenerationStagnant()
-    {
-        $this->generation_stagnant = 0;
-    }
-
-    /**
-     *
-     */
-    public function increaseGenerationStagnant()
-    {
-        $this->generation_stagnant++;
+    public function algorithmStatus() {
+        return $this->status;
     }
 }

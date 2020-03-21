@@ -1,14 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: konstantin
- * Date: 19.03.2020
- * Time: 03:28
- */
-namespace Darvin\GeneticAlgorithm\Population;
-use Darvin\GeneticAlgorithm\Individual\IndividualInterface;
-use Darvin\GeneticAlgorithm\Settings\SettingsInterface;
 
+namespace Darvin\GeneticAlgorithm;
+
+use Darvin\GeneticAlgorithm\Contracts\IndividualInterface;
+use Darvin\GeneticAlgorithm\Contracts\SettingsInterface;
+use Darvin\GeneticAlgorithm\Contracts\PopulationInterface;
+
+/**
+ * Class Population
+ * @package Darvin\GeneticAlgorithm
+ */
 class Population implements PopulationInterface
 {
 
@@ -20,6 +21,13 @@ class Population implements PopulationInterface
     /* @var $settings SettingsInterface */
     public $settings;
 
+    /**
+     * Population constructor.
+     * @param IndividualInterface $individual
+     * @param SettingsInterface $settings
+     * @param int $populationSize Population size
+     * @param bool $initialise
+     */
     function __construct(IndividualInterface $individual, SettingsInterface $settings, $populationSize, $initialise = false)
     {
         $this->individual = $individual;
@@ -46,14 +54,23 @@ class Population implements PopulationInterface
     }
 
 
-    // Сохранение особи
+    /**
+     * Сохранение особи
+     * @param $index
+     * @param IndividualInterface $indiv
+     * @return IndividualInterface
+     */
     public function saveIndividual($index, IndividualInterface $indiv)
     {
         $this->colony[$index] = $indiv;
+        return $this->colony[$index];
     }
 
 
     // Выбор самого успешного
+    /**
+     * @return IndividualInterface|GAIndividualInterface
+     */
     public function getFittest()
     {
         /* @var $fittest IndividualInterface */
@@ -73,21 +90,34 @@ class Population implements PopulationInterface
 
     /* Публичные методы */
     // Получить особь
+    /**
+     * @param $index
+     * @return GAIndividualInterface
+     */
     public function getIndividual($index)
     {
         return  $this->colony[$index];
     }
     // Размер популяции
+    /**
+     * @return int
+     */
     public function size()
     {
         return count($this->colony);
     }
 
+    /**
+     * @return IndividualInterface
+     */
     public function getOriginIndividual()
     {
         return $this->individual;
     }
 
+    /**
+     * @return SettingsInterface
+     */
     public function getSettings()
     {
         return $this->settings;
