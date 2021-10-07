@@ -38,7 +38,7 @@ class Lifecycle extends AlgorithmPart
     /**
      * @var int
      */
-    public $most_fit_last = 40000;
+    public $most_fit_last = INF;
 
     /*
     |--------------------------------------------------------------------------
